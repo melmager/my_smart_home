@@ -1,0 +1,59 @@
+esphome:
+  name: eh-ogwz
+
+esp8266:
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "3cmdcph4me"
+
+ota:
+  password: "3cpmdcph4me"
+
+wifi:
+  ssid: "heimdall-j4"
+  password: "3CmdCpH4me"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Eh-Ogwz Fallback Hotspot"
+    password: "xfGlMRMtEpaE"
+
+#captive_portal:
+
+i2c:
+  sda: D2
+  scl: D1
+  scan: true
+  id: ic_bus
+
+sensor:
+  - platform: bme280
+    temperature:
+      name: "BME280 Temperature"
+      oversampling: 16x
+    pressure:
+      name: "BME280 Pressure"
+    humidity:
+      name: "BME280 Humidity"
+    address: 0x76
+    update_interval: 60s
+
+remote_transmitter:
+  pin: D2
+  carrier_duty_percent: 50%
+
+climate:
+  - platform: heatpumpir
+    name: "WP_wzog"
+    protocol: mitsubishi_heavy_zm
+    horizontal_default: auto
+    vertical_default: auto
+    min_temperature: 18.0  
+    max_temperature: 30.0
+      
+    
